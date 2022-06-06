@@ -5,11 +5,17 @@ import Start from "./components/Start";
 
 export default function App () {
   const [gameRunning, setGameRunning] = React.useState(false);
+  const [questions, setQuestions] = React.useState();
   function toggleGame () {
     setGameRunning(prev => !prev)
   }
+  React.useEffect(() => {
+    fetch("https://opentdb.com/api.php?amount=5")
+      .then(res => res.json())
+      .then(data => setQuestions(data.results))
+  }, [])
 
-
+  console.log(questions)
 
 
   return (
