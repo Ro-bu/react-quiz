@@ -18,7 +18,7 @@ export default function Question (props) {
     let answerElements = answers.map((answer) => {
         return (
             <div key={answer} className="answer">
-                {answer}
+                {he.decode(answer)}
             </div>
         )
     })

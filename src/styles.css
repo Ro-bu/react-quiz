@@ -45,7 +45,7 @@ body {
     font-family: 'Karla', sans-serif;
 }
 html {
-    font-size: 24px;
+    font-size: 16px;
 }
 #root {
     min-width: 100vw;
@@ -78,17 +78,17 @@ html {
 }
 .start-title {
     font-weight: 700;
-    font-size: 2.5rem;
+    font-size: 2rem;
 }
 .start-subtitle {
     font-family: 'Inter', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 400;
     margin-top: 13px;
 }
 .start-button {
     font-family: 'Inter', sans-serif;
-    font-size: 1.5rem;
+    font-size: 1rem;
     font-weight: 500;
     color: #f5f7fb;
     background-color: #4D5B9E;
@@ -114,6 +114,7 @@ html {
     padding: 1rem 0;
     border-bottom: 1px solid #DBDEF0;
     width: 100%;
+    z-index: 3;
 }
 .question-title {
     color: #293264;
@@ -125,6 +126,7 @@ html {
     display: flex;
     gap: 13px;
     margin-top: 12px;
+    flex-wrap: wrap;
 }
 .answer {
     min-width: 70px;
@@ -145,4 +147,11 @@ html {
 .answer:hover {
     background-color: #D6DBF5;
     border: 1px solid #D6DBF5;
+}
+
+
+@media only screen and (min-width: 1300px) {
+    html {
+        font-size: 24px;
+    }
 }
