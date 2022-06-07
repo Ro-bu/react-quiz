@@ -86,18 +86,21 @@ html {
     font-weight: 400;
     margin-top: 13px;
 }
-.start-button {
+.game-button {
     font-family: 'Inter', sans-serif;
-    font-size: 1rem;
-    font-weight: 500;
     color: #f5f7fb;
     background-color: #4D5B9E;
-    padding: 15px 60px;
-    margin-top: 30px;
     border: none;
     border-radius: 15px;
+    cursor:pointer;
 }
-.start-button:hover {
+#start-button {
+    font-size: 1rem;
+    font-weight: 500;
+    padding: 15px 60px;
+    margin-top: 30px;
+}
+.game-button:hover {
     background-color: #D6DBF5;
     color: #293264;
 }
@@ -148,10 +151,19 @@ html {
     background-color: #D6DBF5;
     border: 1px solid #D6DBF5;
 }
-
+.chosen {
+    background-color: #D6DBF5;
+    border: 1px solid #D6DBF5;
+}
 
 @media only screen and (min-width: 1300px) {
     html {
         font-size: 24px;
     }
+}
+#question-page-button {
+    font-size: 0.7rem;
+    font-weight: 600;
+    padding: 14px 20px;
+    margin-top: 20px;
 }

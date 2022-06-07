@@ -16,6 +16,7 @@ export default function QuestionPage (props) {
     return (
         <div className="question-page-container">
             {questionElements}
+            <button className="game-button" id="question-page-button">Check Answers</button>
         </div>
     )
 }
