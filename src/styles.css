@@ -43,7 +43,9 @@ table {
 }
 body {
     font-family: 'Karla', sans-serif;
-    font-size: 16px;
+}
+html {
+    font-size: 24px;
 }
 #root {
     min-width: 100vw;
@@ -98,4 +100,49 @@ body {
 .start-button:hover {
     background-color: #D6DBF5;
     color: #293264;
+}
+.question-page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: min(1000px, 80%);
+}
+.question-container {
+    display: flex;
+    flex-direction: column;
+    padding: 1rem 0;
+    border-bottom: 1px solid #DBDEF0;
+    width: 100%;
+}
+.question-title {
+    color: #293264;
+    font-size: 1rem;
+    font-weight: 700px;
+    line-height: 1.2rem;
+}
+.answer-container {
+    display: flex;
+    gap: 13px;
+    margin-top: 12px;
+}
+.answer {
+    min-width: 70px;
+    height: 1.3rem;
+    background-color: #F5F7FB;
+    border: 1px solid #4D5B9E;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 0.7rem;
+    box-sizing: border-box;
+    padding: 0px 8px;
+    cursor: pointer;
+}
+.answer:hover {
+    background-color: #D6DBF5;
+    border: 1px solid #D6DBF5;
 }
