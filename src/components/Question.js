@@ -1,4 +1,5 @@
 import React from "react";
+import he from "he";
 
 export default function Question (props) {
     // Fisher-Yates shuffle
@@ -23,7 +24,7 @@ export default function Question (props) {
     })
     return (
         <div className="question-container">
-            <h2 className="question-title">{props.question}</h2>
+            <h2 className="question-title">{he.decode(props.question)}</h2>
             <div className="answer-container">
                 {answerElements}
             </div>
