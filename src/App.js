@@ -2,7 +2,7 @@ import React from "react";
 import blueBlob from "./images/blob-blue.png";
 import yellowBlob from "./images/blob-yellow.png";
 import Start from "./components/Start";
-import Question from "./components/Question";
+import QuestionPage from "./components/QuestionPage";
 
 export default function App () {
   const [gameRunning, setGameRunning] = React.useState(false);
@@ -24,7 +24,7 @@ export default function App () {
       <img src={blueBlob} id="blue-blob" alt="blue blob"/>
       <img src={yellowBlob} id="yellow-blob" alt="yellow blob" />
       {!gameRunning && <Start startGame={toggleGame} />}
-      {gameRunning && <Question />}
+      {gameRunning && <QuestionPage data={questions} />}
     </div>
   )
 }

@@ -4,7 +4,7 @@ export default function Question (props) {
     let answers = [...props.falseAnswers, props.rightAnswer];
     let answerElements = answers.map((answer) => {
         return (
-            <div classNAme="answer">
+            <div key={answer} className="answer">
                 {answer}
             </div>
         )
