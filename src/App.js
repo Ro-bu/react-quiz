@@ -16,7 +16,6 @@ export default function App () {
       .then(data => setQuestions(data.results))
   }, [])
 
-  console.log(questions)
 
 
   return (

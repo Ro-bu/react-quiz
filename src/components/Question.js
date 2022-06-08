@@ -4,8 +4,23 @@ import Answers from "./Answers";
 
 export default function Question (props) {
 
-    const [rightAnswer, setRightAnswer] = React.useState(false);
+    let answers = [...props.falseAnswers, props.rightAnswer];
+    const [answerChosen, setAnswerChosen] = React.useState();
 
+    function chooseAnswer (id) {
+        setAnswerChosen(id)
+        console.log(id)
+    }
+
+    function checkForRightAnswer () {
+        if(props.rightAnswer === answerChosen){
+            // props.changeAnswer(props.index, true);
+            console.log("right answer")
+        } else {
+            // props.changeAnswer(props.index, false);
+            console.log("wrong answer")
+        }
+    }
     // Fisher-Yates array shuffle
     function shuffle(array) {
         let m = array.length, t, i;
@@ -18,30 +33,18 @@ export default function Question (props) {
         return array;
     }
 
-    let answers = [...props.falseAnswers, props.rightAnswer];
+    React.useEffect(()=>{
+        shuffle(answers);
+    }, [answers])
 
-    shuffle(answers);
-
-    // let answerElements = answers.map((answer) => {
-    //     return (
-    //         <Answers
-    //             answer={answer}
-    //             isChosen={false}
-    //             key={answer}
-    //             id={answer}
-    //             toggleChosen={() => toggleChosen(answer)}
-    //         />
-    //     )
-    // })
-
+    React.useEffect(() => {
+        checkForRightAnswer();
+    }, [answerChosen])
+    
     return (
         <div className="question-container">
             <h2 className="question-title">{he.decode(props.question)}</h2>
-            <Answers answers={answers} />
+            <Answers chooseAnswer={chooseAnswer} answerChosen={answerChosen} answers={answers} />
         </div>
     )
 }
-
-// pass prop isChosen to answer defaults to false
-// onclick isChosen -> true, add chosen class
-// on checkasnwer button click check for truthy values
