@@ -151,9 +151,34 @@ html {
     background-color: #D6DBF5;
     border: 1px solid #D6DBF5;
 }
+.answer-inactive {
+    min-width: 70px;
+    height: 1.3rem;
+    color: #4D5B9E;
+    border: 1px solid #4D5B9E;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Inter';
+    font-weight: 500;
+    font-size: 0.7rem;
+    box-sizing: border-box;
+    padding: 0px 8px;
+    cursor: pointer;
+}
 .chosen {
     background-color: #D6DBF5;
     border: 1px solid #D6DBF5;
+}
+.correct {
+    background-color: #94D7A2;
+    border: 1px solid #94D7A2;
+    color: #293264;
+}
+.incorrect {
+    background-color: #F8BCBC;
+    border: 1px solid #F8BCBC;
 }
 
 @media only screen and (min-width: 1300px) {

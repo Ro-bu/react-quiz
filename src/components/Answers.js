@@ -1,13 +1,22 @@
 import React from "react";
 import he from "he";
+import classNames from "classnames";
 
 export default function Answers(props) {
 
     let answerElements = props.answers.map((answer) => {
+        let answerClasses= classNames({
+            "answer": !props.roundFinished,
+            "answer-inactive": props.roundFinished,
+            "chosen": !props.roundFinished && props.answerChosen === answer,
+            "correct": props.roundFinished && props.correctAnswer === answer,
+            "incorrect": props.roundFinished && props.correctAnswer !== answer && props.answerChosen === answer
+        })
         return (
             <div
                 key={answer}
-                className={props.answerChosen === answer ? "answer chosen" : "answer"}
+                // className={(props.answerChosen === answer && !props.roundFinished ? "answer chosen" : "answer")}
+                className={answerClasses}
                 id={answer}
                 onClick={() => {
                     props.chooseAnswer(props.index, answer)

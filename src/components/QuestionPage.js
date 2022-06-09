@@ -4,6 +4,8 @@ import { nanoid } from "nanoid";
 
 export default function QuestionPage (props) {
 
+    const[roundFinished, setRoundFinished] = React.useState(true);
+
     let questionElements = props.data.map((question) => {
         return (
             <Question
@@ -14,14 +16,15 @@ export default function QuestionPage (props) {
             key={nanoid()}
             index={question.index}
             chooseAnswer={props.chooseAnswer}
+            roundFinished={roundFinished}
         />
         )
-    })
+    });
 
     return (
         <div className="question-page-container">
             {questionElements}
-            <button className="game-button" id="question-page-button">Check Answers</button>
+            <button className="game-button" id="question-page-button">{roundFinished ? "Play Again" : "Check Answers"}</button>
         </div>
     )
-}
+};
