@@ -10,20 +10,53 @@ export default function App () {
   function toggleGame () {
     setGameRunning(prev => !prev)
   }
+
+  // Fisher-Yates array shuffle
+  function shuffle(array) {
+    let m = array.length, t, i;
+    while (m) {
+      i = Math.floor(Math.random() * m--);
+      t = array[m];
+      array[m] = array[i];
+      array[i] = t;
+    }
+    return array;
+  }
+
+  React.useEffect(() => {
+    console.log(questions)
+  }, [questions])
+
   React.useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
       .then(res => res.json())
-      .then(data => setQuestions(data.results))
+      .then(data => setQuestions(data.results.map((question) => {
+        return(
+          {
+            question: question.question,
+            correctAnswer: question.correct_answer,
+            allAnswers: shuffle([...question.incorrect_answers, question.correct_answer]),
+            index: data.results.indexOf(question),
+            answerChosen: ""
+          }
+        )
+      })))
   }, [])
 
-
+  function chooseAnswer (index, answer) {
+    setQuestions(prev => {
+      let newQuestions = [...prev]
+      newQuestions[index].answerChosen = answer
+      return newQuestions
+    })
+  };
 
   return (
     <div className="main">
       <img src={blueBlob} id="blue-blob" alt="blue blob"/>
       <img src={yellowBlob} id="yellow-blob" alt="yellow blob" />
       {!gameRunning && <Start startGame={toggleGame} />}
-      {gameRunning && <QuestionPage data={questions} />}
+      {gameRunning && <QuestionPage chooseAnswer={chooseAnswer} data={questions} />}
     </div>
   )
 }

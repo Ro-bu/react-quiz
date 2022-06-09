@@ -10,7 +10,7 @@ export default function Answers(props) {
                 className={props.answerChosen === answer ? "answer chosen" : "answer"}
                 id={answer}
                 onClick={() => {
-                    props.chooseAnswer(answer)
+                    props.chooseAnswer(props.index, answer)
                 }}
             >
                 {he.decode(answer)}
