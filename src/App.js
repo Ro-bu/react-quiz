@@ -7,6 +7,8 @@ import QuestionPage from "./components/QuestionPage";
 export default function App () {
   const [gameRunning, setGameRunning] = React.useState(false);
   const [questions, setQuestions] = React.useState();
+  const [answerError, setAnswerError] = React.useState(false);
+
   function toggleGame () {
     setGameRunning(prev => !prev)
   }
@@ -29,18 +31,18 @@ export default function App () {
 
   React.useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
-      .then(res => res.json())
-      .then(data => setQuestions(data.results.map((question) => {
-        return(
-          {
-            question: question.question,
-            correctAnswer: question.correct_answer,
-            allAnswers: shuffle([...question.incorrect_answers, question.correct_answer]),
-            index: data.results.indexOf(question),
-            answerChosen: ""
-          }
-        )
-      })))
+    .then(res => res.json())
+    .then(data => setQuestions(data.results.map((question) => {
+      return(
+        {
+          question: question.question,
+          correctAnswer: question.correct_answer,
+          allAnswers: shuffle([...question.incorrect_answers, question.correct_answer]),
+          index: data.results.indexOf(question),
+          answerChosen: ""
+        }
+      )
+    })))
   }, [])
 
   function chooseAnswer (index, answer) {
@@ -51,12 +53,37 @@ export default function App () {
     })
   };
 
+  function endGame () {
+    setGameRunning(false)
+  }
+
+  function areAllQuestionsAnswered () {
+    let answerCounter = 0;
+    questions.forEach((question) => {
+      if(question.answerChosen !== "") {
+        answerCounter++
+      }
+    })
+    if (answerCounter === 5) {
+      setAnswerError(false);
+      return true;
+    } else {
+      setAnswerError(true);
+      return false;
+    }
+  }
+
   return (
     <div className="main">
       <img src={blueBlob} id="blue-blob" alt="blue blob"/>
       <img src={yellowBlob} id="yellow-blob" alt="yellow blob" />
       {!gameRunning && <Start startGame={toggleGame} />}
-      {gameRunning && <QuestionPage chooseAnswer={chooseAnswer} data={questions} />}
+      {gameRunning && <QuestionPage
+                        chooseAnswer={chooseAnswer}
+                        data={questions}
+                        endGame={endGame}
+                        areAllQuestionsAnswered={areAllQuestionsAnswered}
+                        answerError={answerError} />}
     </div>
   )
 }

@@ -4,7 +4,8 @@ import { nanoid } from "nanoid";
 
 export default function QuestionPage (props) {
 
-    const[roundFinished, setRoundFinished] = React.useState(true);
+    const [roundFinished, setRoundFinished] = React.useState(false);
+
 
     let questionElements = props.data.map((question) => {
         return (
@@ -24,7 +25,18 @@ export default function QuestionPage (props) {
     return (
         <div className="question-page-container">
             {questionElements}
-            <button className="game-button" id="question-page-button">{roundFinished ? "Play Again" : "Check Answers"}</button>
+            <div className="button-container">
+                <button className="game-button" id="question-page-button" onClick={() => {
+                    if (!roundFinished && props.areAllQuestionsAnswered()) {
+                        setRoundFinished(true);
+                    } else if (roundFinished) {
+                        props.endGame();
+                    }
+                }}>
+                    {roundFinished ? "Play Again" : "Check Answers"}
+                </button>
+                {props.answerError && <span className="answer-error">Please answer all questions</span>}
+            </div>
         </div>
     )
 };

@@ -15,11 +15,12 @@ export default function Answers(props) {
         return (
             <div
                 key={answer}
-                // className={(props.answerChosen === answer && !props.roundFinished ? "answer chosen" : "answer")}
                 className={answerClasses}
                 id={answer}
                 onClick={() => {
-                    props.chooseAnswer(props.index, answer)
+                    if(!props.roundFinished){
+                        props.chooseAnswer(props.index, answer)
+                    }
                 }}
             >
                 {he.decode(answer)}
