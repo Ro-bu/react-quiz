@@ -6,7 +6,7 @@ import QuestionPage from "./components/QuestionPage";
 
 export default function App () {
   const [gameRunning, setGameRunning] = React.useState(false);
-  const [questions, setQuestions] = React.useState();
+  const [questions, setQuestions] = React.useState([]);
   const [answerError, setAnswerError] = React.useState(false);
   const [roundsPlayed, setRoundsPlayed] = React.useState(0);
 
