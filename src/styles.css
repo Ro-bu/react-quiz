@@ -125,7 +125,7 @@ html {
     align-items: center;
     justify-content: center;
     max-width: min(1000px, 80%);
-    margin: 60px 0;
+    margin: 60px 0 80px 0;
 }
 .question-container {
     display: flex;
@@ -197,6 +197,11 @@ html {
 .incorrect {
     background-color: #F8BCBC;
     border: 1px solid #F8BCBC;
+}
+.round-finished-text{
+    font-size: 1.1rem;
+    position: absolute;
+    bottom: -2rem;
 }
 
 @media only screen and (min-width: 1300px) {

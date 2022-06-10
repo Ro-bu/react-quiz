@@ -29,6 +29,7 @@ export default function QuestionPage (props) {
                 <button className="game-button" id="question-page-button" onClick={() => {
                     if (!roundFinished && props.areAllQuestionsAnswered()) {
                         setRoundFinished(true);
+                        console.log(props.countRightAnswers())
                     } else if (roundFinished) {
                         props.endGame();
                     }
@@ -36,6 +37,7 @@ export default function QuestionPage (props) {
                     {roundFinished ? "Play Again" : "Check Answers"}
                 </button>
                 {props.answerError && <span className="answer-error">Please answer all questions</span>}
+                {roundFinished && <span className="round-finished-text">You scored {props.countRightAnswers()}/5 correct answers</span>}
             </div>
         </div>
     )

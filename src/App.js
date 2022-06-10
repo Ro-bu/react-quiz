@@ -8,7 +8,7 @@ export default function App () {
   const [gameRunning, setGameRunning] = React.useState(false);
   const [questions, setQuestions] = React.useState();
   const [answerError, setAnswerError] = React.useState(false);
-
+  // state roundsplayed seotud fetchi useeffectiga
   function toggleGame () {
     setGameRunning(prev => !prev)
   }
@@ -73,6 +73,16 @@ export default function App () {
     }
   }
 
+  function countRightAnswers () {
+    let rightAnswerCounter = 0;
+    questions.forEach((question) => {
+      if(question.correctAnswer === question.answerChosen) {
+        rightAnswerCounter++;
+      }
+    })
+    return rightAnswerCounter;
+  }
+
   return (
     <div className="main">
       <img src={blueBlob} id="blue-blob" alt="blue blob"/>
@@ -83,7 +93,8 @@ export default function App () {
                         data={questions}
                         endGame={endGame}
                         areAllQuestionsAnswered={areAllQuestionsAnswered}
-                        answerError={answerError} />}
+                        answerError={answerError}
+                        countRightAnswers={countRightAnswers} />}
     </div>
   )
 }
