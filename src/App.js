@@ -8,7 +8,8 @@ export default function App () {
   const [gameRunning, setGameRunning] = React.useState(false);
   const [questions, setQuestions] = React.useState();
   const [answerError, setAnswerError] = React.useState(false);
-  // state roundsplayed seotud fetchi useeffectiga
+  const [roundsPlayed, setRoundsPlayed] = React.useState(0);
+
   function toggleGame () {
     setGameRunning(prev => !prev)
   }
@@ -25,9 +26,6 @@ export default function App () {
     return array;
   }
 
-  React.useEffect(() => {
-    console.log(questions)
-  }, [questions])
 
   React.useEffect(() => {
     fetch("https://opentdb.com/api.php?amount=5&type=multiple")
@@ -43,7 +41,7 @@ export default function App () {
         }
       )
     })))
-  }, [])
+  }, [roundsPlayed]);
 
   function chooseAnswer (index, answer) {
     setQuestions(prev => {
@@ -55,7 +53,7 @@ export default function App () {
 
   function endGame () {
     setGameRunning(false)
-  }
+  };
 
   function areAllQuestionsAnswered () {
     let answerCounter = 0;
@@ -71,7 +69,7 @@ export default function App () {
       setAnswerError(true);
       return false;
     }
-  }
+  };
 
   function countRightAnswers () {
     let rightAnswerCounter = 0;
@@ -81,7 +79,11 @@ export default function App () {
       }
     })
     return rightAnswerCounter;
-  }
+  };
+
+  function addRoundsPlayed () {
+    setRoundsPlayed(prev => (prev + 1))
+  };
 
   return (
     <div className="main">
@@ -94,7 +96,8 @@ export default function App () {
                         endGame={endGame}
                         areAllQuestionsAnswered={areAllQuestionsAnswered}
                         answerError={answerError}
-                        countRightAnswers={countRightAnswers} />}
+                        countRightAnswers={countRightAnswers}
+                        addRoundsPlayed={addRoundsPlayed} />}
     </div>
   )
-}
+};
