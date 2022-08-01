@@ -8,7 +8,7 @@ Solo project from [Scrimbas](https://scrimba.com/) intermediate React course
 
 ```
 git clone https://github.com/Ro-bu/react-quiz.git
-cd shopping-cart
+cd react-quiz
 npm install
 npm start
 ```
