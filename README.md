@@ -19,6 +19,8 @@ The main goal for this project was to create a memory quiz app that fetches ques
 
 Beyond that, other learning outcomes were:
 
+- How to decode Unicode symbols for answer matching
+- How to handle a large amount of conditional classNames on one component
 - Further comprehension of state management
 
 ## Screenshots
@@ -40,4 +42,6 @@ Beyond that, other learning outcomes were:
 
 ### Javascript Framework
 
-- [React](https://github.com/facebook/create-react-app)
+- [nanoid](https://www.npmjs.com/package/nanoid)
+- [he](https://www.npmjs.com/package/he)
+- [classnames](https://www.npmjs.com/package/classnames)
